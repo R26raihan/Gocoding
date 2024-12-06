@@ -18,11 +18,19 @@
 
         <div class="form-group">
             <label for="content">Konten Artikel</label>
+            <!-- Tombol untuk Sisipkan Kode dan Gambar -->
+            <div class="mb-2">
+                <button type="button" class="btn btn-primary btn-sm" onclick="insertCode()">Sisipkan Kode</button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="insertImage()">Sisipkan Gambar URL</button>
+            </div>
+            <!-- Textarea untuk konten artikel -->
             <textarea name="content" id="content" class="form-control" rows="5" required>{{ old('content', $article->content) }}</textarea>
             @error('content')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
         </div>
+
+
 
         <!-- Form untuk menulis kode -->
         <div class="form-group">
@@ -145,4 +153,45 @@
             document.getElementById("code_5").value = codeMirror5.getValue();
         };
     </script>
+
+@push('scripts')
+<script>
+    // Fungsi untuk menyisipkan template kode ke dalam textarea
+    function insertCode() {
+        const textarea = document.getElementById("content");
+        if (!textarea) return;
+
+        const codeTemplate = `<pre><code>// Tulis kode Anda di sini</code></pre>`;
+        insertAtCursor(textarea, codeTemplate);
+    }
+
+    // Fungsi untuk menyisipkan gambar URL ke dalam textarea
+    function insertImage() {
+        const url = prompt("Masukkan URL gambar:");
+        if (url) {
+            const textarea = document.getElementById("content");
+            if (!textarea) return;
+
+            const imageTemplate = `<img src="${url}" alt="Deskripsi gambar">`;
+            insertAtCursor(textarea, imageTemplate);
+        }
+    }
+
+    // Fungsi untuk menyisipkan teks di posisi kursor dalam textarea
+    function insertAtCursor(textarea, text) {
+        const start = textarea.selectionStart;
+        const end = textarea.selectionEnd;
+        const before = textarea.value.substring(0, start);
+        const after = textarea.value.substring(end, textarea.value.length);
+
+        textarea.value = before + text + after;
+
+        // Mengembalikan fokus ke textarea
+        textarea.focus();
+        textarea.selectionStart = textarea.selectionEnd = start + text.length;
+    }
+</script>
+@endpush
+
+
 @endsection

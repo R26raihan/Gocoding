@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ArticleController;
 use App\Models\Article;
+use App\Http\Controllers\FormDataController;
+use App\Http\Controllers\SoalController;
 
 
 
@@ -67,7 +69,7 @@ Route::prefix('articles')->group(function () {
 
 });
 
-
+// article==============================================================================================================
 Route::get('/daftararticles', function() {
     $articles = Article::latest()->paginate(10); // Menampilkan artikel terbaru dengan pagination
     return view('daftararticles', compact('articles'));
@@ -77,4 +79,34 @@ Route::get('/daftararticles/{id}', function($id) {
     $article = Article::findOrFail($id); // Menampilkan artikel berdasarkan ID
     return view('articles.show', compact('article'));
 })->name('articles.show');
+
+
+
+// formdatadiri======================================================================================================================
+Route::get('/form-data-diri', function () {
+    return view('Question.formdatadiri'); // Nama file Blade
+});
+
+Route::post('/save-data', [FormDataController::class, 'saveUserData'])->name('saveUserData');
+
+// guru dashboar======================================================================================================================
+
+Route::prefix('guru')->middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [SoalController::class, 'index'])->name('guru.dashboard');
+    Route::get('/soal/create', [SoalController::class, 'create'])->name('guru.createSoal');
+    Route::post('/soal/store', [SoalController::class, 'store'])->name('guru.storeSoal');
+    Route::get('/soal/{id}/edit', [SoalController::class, 'edit'])->name('guru.editSoal');
+    Route::put('/soal/{id}', [SoalController::class, 'update'])->name('guru.updateSoal');
+    Route::delete('/soal/{id}', [SoalController::class, 'destroy'])->name('guru.deleteSoal');
+
+});
+Route::prefix('guru')->middleware(['auth'])->group(function () {
+    Route::get('/soals/{id}', [SoalController::class, 'show'])->name('soals.show');
+});
+
+Route::get('/soals', [SoalController::class, 'indexPublic'])->name('soals.indexPublic');
+
+Route::get('/soal/{id}', [SoalController::class, 'showPublic'])->name('soals.showPublic');
+
+Route::post('/siswa/jawaban/{id}', [SoalController::class, 'submitJawaban'])->name('siswa.submitJawaban');
 
