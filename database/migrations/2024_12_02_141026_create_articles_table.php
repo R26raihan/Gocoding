@@ -17,6 +17,11 @@ return new class extends Migration
             $table->text('content');
             $table->string('image')->nullable(); // untuk menyimpan nama file gambar
             $table->timestamps();
+            $table->string('code_1')->nullable();
+            $table->string('code_2')->nullable();
+            $table->string('code_3')->nullable();
+            $table->string('code_4')->nullable();
+            $table->string('code_5')->nullable();
         });
     }
 

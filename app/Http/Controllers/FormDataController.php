@@ -1,34 +1,46 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Guru; // Pastikan Anda menggunakan model yang benar
+use App\Models\Guru; 
+use App\Models\Siswa; 
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class FormDataController extends Controller
 {
     public function saveUserData(Request $request)
     {
         // Validasi input
-        $validated = $request->validate([
+        $request->validate([
             'nama' => 'required|string|max:255',
-            'email' => 'required|email|unique:gurus,email',
+            'email' => 'required|email|unique:gurus,email|unique:siswa,email',
             'asal_sekolah' => 'required|string|max:255',
-            'jenjang_pendidikan' => 'required|string|max:255',
-            'role' => 'required|in:gurus,siswa',
+            'jenjang_pendidikan' => 'required|string',
+            'role' => 'required|string|in:gurus,siswa',
         ]);
-
-        // Simpan data ke tabel 'gurus' (jika role adalah guru)
-        if ($validated['role'] === 'gurus') {
+    
+        // Simpan data ke tabel guru atau siswa sesuai role
+        if ($request->role === 'gurus') {
             Guru::create([
-                'nama' => $validated['nama'],
-                'email' => $validated['email'],
-                'asal_sekolah' => $validated['asal_sekolah'],
-                'jenjang_pendidikan' => $validated['jenjang_pendidikan'],
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'asal_sekolah' => $request->asal_sekolah,
+                'jenjang_pendidikan' => $request->jenjang_pendidikan,
             ]);
-        } else {
-            // Simpan data ke tabel siswa jika diperlukan
+    
+            return redirect()->route('guru.dashboard')->with('success', 'Data guru berhasil disimpan.');
+        } elseif ($request->role === 'siswa') {
+            Siswa::create([
+                'nama' => $request->nama,
+                'email' => $request->email,
+                'asal_sekolah' => $request->asal_sekolah,
+                'jenjang_pendidikan' => $request->jenjang_pendidikan,
+            ]);
+    
+            return redirect()->route('soals.indexPublic')->with('success', 'Data siswa berhasil disimpan.');
         }
-
-        return redirect()->back()->with('success', 'Data berhasil disimpan!');
+    
+        return redirect()->back()->with('error', 'Role tidak valid.');
     }
+       
 }
