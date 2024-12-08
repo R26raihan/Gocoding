@@ -34,11 +34,6 @@ class ArticleController extends Controller
     $request->validate([
         'title' => 'required|string|max:255',
         'content' => 'required|string',
-        'code_1' => 'nullable|string',
-        'code_2' => 'nullable|string',
-        'code_3' => 'nullable|string',
-        'code_4' => 'nullable|string',
-        'code_5' => 'nullable|string',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
 
@@ -53,11 +48,6 @@ class ArticleController extends Controller
     $article = new Article();
     $article->title = $request->input('title');
     $article->content = $request->input('content');
-    $article->code_1 = $request->input('code_1');
-    $article->code_2 = $request->input('code_2');
-    $article->code_3 = $request->input('code_3');
-    $article->code_4 = $request->input('code_4');
-    $article->code_5 = $request->input('code_5');
     $article->image = $imagePath;
 
     $article->save();
@@ -83,11 +73,6 @@ class ArticleController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
-            'code_1' => 'nullable|string',
-            'code_2' => 'nullable|string',
-            'code_3' => 'nullable|string',
-            'code_4' => 'nullable|string',
-            'code_5' => 'nullable|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -111,11 +96,6 @@ class ArticleController extends Controller
         // Perbarui data artikel
         $article->title = $request->input('title');
         $article->content = $request->input('content');
-        $article->code_1 = $request->input('code_1');
-        $article->code_2 = $request->input('code_2');
-        $article->code_3 = $request->input('code_3');
-        $article->code_4 = $request->input('code_4');
-        $article->code_5 = $request->input('code_5');
         $article->image = $imagePath;
 
         $article->save();

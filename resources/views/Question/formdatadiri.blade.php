@@ -81,5 +81,16 @@
 
 <!-- Tambahkan script JS untuk interaksi jika diperlukan -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const role = document.getElementById('role').value;
+        if (!role) {
+            event.preventDefault();
+            alert('Silakan pilih role sebelum menyimpan.');
+        }
+    });
+</script>
+
 </body>
 </html>

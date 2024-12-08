@@ -84,29 +84,30 @@ Route::get('/daftararticles/{id}', function($id) {
 
 // formdatadiri======================================================================================================================
 Route::get('/form-data-diri', function () {
-    return view('Question.formdatadiri'); // Nama file Blade
+    return view('Question.formdatadiri');
 });
 
-Route::post('/save-data', [FormDataController::class, 'saveUserData'])->name('saveUserData');
+Route::post('/form-data-diri', [FormDataController::class, 'saveUserData'])->name('saveUserData');
 
-// guru dashboar======================================================================================================================
-
-Route::prefix('guru')->middleware(['auth'])->group(function () {
+// Rute untuk Guru
+Route::prefix('guru')->middleware(['auth', 'role:guru'])->group(function () {
+    // Dashboard guru
     Route::get('/dashboard', [SoalController::class, 'index'])->name('guru.dashboard');
+
+    // CRUD untuk soal
     Route::get('/soal/create', [SoalController::class, 'create'])->name('guru.createSoal');
     Route::post('/soal/store', [SoalController::class, 'store'])->name('guru.storeSoal');
     Route::get('/soal/{id}/edit', [SoalController::class, 'edit'])->name('guru.editSoal');
     Route::put('/soal/{id}', [SoalController::class, 'update'])->name('guru.updateSoal');
     Route::delete('/soal/{id}', [SoalController::class, 'destroy'])->name('guru.deleteSoal');
 
+    // Menampilkan detail soal
+    Route::get('/soal/{id}', [SoalController::class, 'show'])->name('guru.showSoal');
 });
-Route::prefix('guru')->middleware(['auth'])->group(function () {
-    Route::get('/soals/{id}', [SoalController::class, 'show'])->name('soals.show');
+
+// Rute untuk Siswa
+Route::middleware(['auth'])->group(function () {
+    Route::get('/soals', [SoalController::class, 'indexPublic'])->name('soals.indexPublic'); // Menampilkan soal secara umum
+    Route::get('/soal/{id}', [SoalController::class, 'showPublic'])->name('soals.showPublic'); // Detail soal untuk siswa
+    Route::post('/siswa/jawaban/{id}', [SoalController::class, 'submitJawaban'])->name('siswa.submitJawaban'); // Jawaban siswa
 });
-
-Route::get('/soals', [SoalController::class, 'indexPublic'])->name('soals.indexPublic');
-
-Route::get('/soal/{id}', [SoalController::class, 'showPublic'])->name('soals.showPublic');
-
-Route::post('/siswa/jawaban/{id}', [SoalController::class, 'submitJawaban'])->name('siswa.submitJawaban');
-

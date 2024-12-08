@@ -13,13 +13,8 @@ class Article extends Model
     protected $table = 'articles';
 
     // Menentukan kolom yang dapat diisi secara massal (mass assignable)
-    protected $fillable = [
-        'title',
-        'content',
-        'image',
-        'code',
-        'code_1', 'code_2', 'code_3', 'code_4', 'code_5',
-    ];
+    protected $fillable = ['title', 'content', 'image'];
+
 
     // Menentukan kolom yang tidak boleh diisi secara massal (guarded)
     // protected $guarded = ['id'];
