@@ -8,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
             <a class="navbar-brand" href="#">GOcoding</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -17,10 +17,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Artikel</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Soal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/daftararticles') }}">Artikel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/siswa/kategori-soal') }}">Soal</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/tentang-kami') }}">Tentang Kami</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+
+                    <!-- Check if user is logged in -->
+                    @if (Auth::check())
+                        <!-- Show logout if logged in -->
+                        <li class="nav-item">
+                            <form action="{{ route('logout') }}" method="POST" style="display:inline;">
+                                @csrf
+                                <button type="submit" class="btn btn-logout nav-link" style="color: inherit;">Logout</button>
+                            </form>
+                        </li>
+                    @else
+                        <!-- Show login if not logged in -->
+                        <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -39,9 +52,6 @@
                     <h2>Tentang GOcoding</h2>
                     <p>
                         GOcoding adalah platform pembelajaran coding yang dirancang khusus untuk anak-anak SD. Kami bertujuan untuk memberikan pengalaman belajar yang menyenangkan dan mudah dipahami oleh generasi muda Indonesia. Dengan materi yang sederhana dan berbasis proyek, anak-anak dapat mempelajari keterampilan digital yang akan sangat berguna di masa depan.
-                    </p>
-                    <p>
-                        Kami juga memberikan dukungan untuk para guru agar mereka dapat membuat soal dan tugas yang mendukung proses belajar mengajar dengan cara yang lebih interaktif. Dengan GOcoding, anak-anak dan guru dapat berkolaborasi untuk menciptakan suasana belajar yang lebih efektif dan menyenangkan.
                     </p>
                 </div>
             </div>
@@ -69,7 +79,7 @@
                         <h3>Misi Kami</h3>
                         <ul>
                             <li>Menyediakan artikel dan materi belajar coding yang sederhana dan mudah dipahami oleh anak-anak.</li>
-                            <li>Membantu guru dalam membuat soal dan tugas yang mendukung pembelajaran siswa.</li>
+                            <li>Mendukung pembelajaran siswa yang ingin belajar dasar coding.</li>
                             <li>Menciptakan pengalaman belajar yang interaktif, menyenangkan, dan berdampak positif bagi masa depan anak-anak Indonesia.</li>
                         </ul>
                     </div>

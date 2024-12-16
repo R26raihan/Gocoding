@@ -9,6 +9,17 @@
             <label for="soal">Soal</label>
             <textarea id="soal" name="soal" class="form-control" required></textarea>
         </div>
+
+        <div class="form-group">
+            <label for="kategori_id">Kategori</label>
+            <select id="kategori_id" name="kategori_id" class="form-control" required>
+                <option value="">Pilih Kategori</option>
+                @foreach($kategori_soal as $kategori)
+                    <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                @endforeach
+            </select>
+        </div>
+
         <div id="jawaban-container" class="mt-3">
             <label>Jawaban</label>
             <div class="jawaban-item mb-2">

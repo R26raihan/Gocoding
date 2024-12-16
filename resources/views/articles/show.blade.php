@@ -25,6 +25,7 @@
 
                     <!-- Menampilkan Kode 1 jika ada -->
                     @if($article->code_1)
+                    <p>Contoh Code</p>
                         <pre><code class="language-php">
                             {!! nl2br(e($article->code_1)) !!}
                         </code></pre>
@@ -32,6 +33,7 @@
 
                     <!-- Menampilkan Kode 2 jika ada -->
                     @if($article->code_2)
+                    <p>Contoh code</p>
                         <pre><code class="language-javascript">
                             {!! nl2br(e($article->code_2)) !!}
                         </code></pre>
@@ -39,6 +41,7 @@
 
                     <!-- Menampilkan Kode 3 jika ada -->
                     @if($article->code_3)
+                    <p>Contoh Code</p>
                         <pre><code class="language-python">
                             {!! nl2br(e($article->code_3)) !!}
                         </code></pre>
@@ -46,6 +49,7 @@
 
                     <!-- Menampilkan Kode 4 jika ada -->
                     @if($article->code_4)
+                    <p>Contoh Code</p>
                         <pre><code class="language-ruby">
                             {!! nl2br(e($article->code_4)) !!}
                         </code></pre>
@@ -53,6 +57,7 @@
 
                     <!-- Menampilkan Kode 5 jika ada -->
                     @if($article->code_5)
+                       <p>Contoh Code</p>
                         <pre><code class="language-java">
                             {!! nl2br(e($article->code_5)) !!}
                         </code></pre>

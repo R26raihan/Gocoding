@@ -21,7 +21,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/daftararticles') }}">Artikel</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Soal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/siswa/kategori-soal') }}">Soal</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/tentang-kami') }}">Tentang Kami</a></li>
 
                     <!-- Check if user is logged in -->
@@ -59,5 +59,7 @@
             });
         });
     </script>
+
+
 </body>
 </html>

@@ -155,3 +155,63 @@
 }
 
 /* ============================================================================================= */
+.bocah-coding {
+    position: relative;
+    text-align: center;
+    color: white;
+    overflow: hidden; /* Menjaga gambar tidak meluap keluar */
+}
+
+.bocah-coding .img {
+    width: 100%;  /* Menyesuaikan gambar dengan lebar container */
+    height: auto; /* Menjaga proporsi gambar */
+    object-fit: cover; /* Memastikan gambar mengisi container */
+    filter: brightness(50%); /* Menggelapkan gambar untuk kontras teks */
+    transition: all 0.3s ease; /* Transisi untuk perubahan efek */
+}
+
+/* Efek hover untuk gambar */
+.bocah-coding:hover .img {
+    filter: brightness(60%); /* Mencerahkan sedikit gambar saat hover */
+}
+
+.bocah-coding .overlay {
+    position: absolute;
+    top: 50%; /* Memposisikan konten di tengah vertikal */
+    left: 50%; /* Memposisikan konten di tengah horizontal */
+    transform: translate(-50%, -50%); /* Memastikan overlay tepat di tengah */
+    z-index: 10; /* Menempatkan overlay di atas gambar */
+    color: white;
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Memberikan bayangan pada teks */
+}
+
+.bocah-coding h1 {
+    font-size: 3rem; /* Ukuran font yang besar */
+    margin-bottom: 15px; /* Memberikan jarak bawah */
+    font-weight: bold; /* Menebalkan font */
+    text-transform: uppercase; /* Membuat teks menjadi huruf kapital */
+    letter-spacing: 2px; /* Memberikan jarak antar huruf */
+    animation: fadeIn 1s ease-out; /* Animasi muncul dari bawah */
+}
+
+.bocah-coding p {
+    font-size: 1.2rem; /* Ukuran font untuk deskripsi */
+    margin-bottom: 20px; /* Memberikan jarak bawah */
+    font-style: italic; /* Membuat teks miring */
+    animation: fadeIn 1.5s ease-out; /* Animasi muncul dengan efek berbeda */
+}
+
+/* Efek animasi untuk fade in */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px); /* Mulai dengan posisi sedikit turun */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Teks muncul ke posisi normal */
+    }
+}
+
+

@@ -19,8 +19,9 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/daftararticles') }}">Artikel</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/form-data-diri') }}">Soal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('/siswa/kategori-soal') }}">Latihan Soal</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('/tentang-kami') }}">Tentang Kami</a></li>
+
 
                     <!-- Check if user is logged in -->
                     @if (Auth::check())
@@ -45,19 +46,21 @@
         <h1 class="text-center">Selamat Datang di GOcoding!</h1>
         <p class="text-center">Website seru untuk belajar coding dengan mudah dan menyenangkan.</p>
         <div class="d-flex justify-content-center">
-            <a href="#" class="btn btn-primary mx-2">Mulai Belajar</a>
+            <a href="{{ url('/siswa/kategori-soal') }}" class="btn btn-primary mx-2">Mulai Belajar</a>
             <a href="{{ url('/tentang-kami') }}" class="btn btn-outline-primary mx-2">Tentang GOcoding</a>
         </div>
     </div>
 
 
-
-    <section class="Gambar-coding text-center">
+    <section class="bocah-coding">
         <div class="overlay">
-            <h2 class="text-white">Belajar Coding Itu Menyenangkan!</h2>
+            <h1>Ayo Wujudkan Generasi Muda yang Jago Coding!</h1>
+            <p>Dengan kemampuan coding, masa depanmu akan lebih cerah dan penuh peluang!</p>
         </div>
-        <img src="{{ asset('images/Open source-cuate.png') }}" alt="Gambar Coding" class="img-fluid w-100">
+        <img src="https://berita.teknologi.id/uploads/2019/07/rMxmRWn_n7GTc-Zhktxtp34zJDgYOJ9QSXqLNBB0QmA.jpg" alt="bocah-coding" class="img">
     </section>
+
+
 
     <section class="Penjelasan-potensi-code-di-indonesia">
         <div class="container text-center py-5">

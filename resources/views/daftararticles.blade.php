@@ -8,6 +8,7 @@
             <div class="col-md-10">
                 <h1 class="display-4 text-center mb-4">Daftar Artikel</h1>
 
+
                 <!-- Daftar Artikel -->
                 @foreach($articles as $article)
                     <div class="article-preview mb-4">
@@ -30,3 +31,4 @@
         </div>
     </div>
 @endsection
+
